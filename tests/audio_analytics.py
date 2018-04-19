@@ -35,7 +35,7 @@ class AudioInformation:
 
         plt.figure(1)
         plt.title('Signal Wave...')
-        plt.plot(self.ampl)
+        plt.plot(self.normalized)
         plt.show()
 
     def setData(self):

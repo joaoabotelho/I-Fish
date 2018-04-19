@@ -12,6 +12,7 @@ class AudioInformation:
         self.framerate = self.setFramerate()
         self.ampl = self.setAmpl()
         self.normalized = self.setNormalized()
+        self.norm_zero = self.setNormZero()
 
     def __str__(self):
         f_str = ""
@@ -48,6 +49,9 @@ class AudioInformation:
 
     def setNormalized(self):
         return 2*((self.ampl - min(self.ampl))/(max(self.ampl)-min(self.ampl)))-1
+
+    def setNormZero(self):
+        return 2*((0 - min(self.ampl))/(max(self.ampl)-min(self.ampl)))-1
 
 if __name__ == "__main__":
     test = AudioInformation(FILE_NAME)

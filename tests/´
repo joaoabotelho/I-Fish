@@ -1,10 +1,9 @@
 import wave
 import matplotlib.pyplot as plt
 import numpy as np
-import peakutils
 from sklearn.preprocessing import normalize
 
-FILE_NAME = "audio-siri/Siri_test1.wav"
+FILE_NAME = "audio-siri/Siri_test2.wav"
 
 class AudioInformation:
     def __init__(self, file_name):
@@ -35,23 +34,21 @@ class AudioInformation:
 
         plt.figure(1)
         plt.title('Signal Wave...')
-        plt.plot(self.ampl)
+        plt.plot(Time, abs(self.ampl))
         plt.show()
 
     def setData(self):
         return self.file.readframes(-1)
 
     def setAmpl(self):
-        ampl = np.fromstring(self.data, 'Int16').astype(float)
-        indexes = peakutils.indexes(ampl, thres=0.02/max(ampl), min_dist=500)
-        final = np.take(ampl, indexes)
-        return final
+        return np.fromstring(self.data, 'Int16').astype(float)
 
     def setFramerate(self):
         return self.file.getframerate()
 
     def setNormalized(self):
-        return (self.ampl - min(self.ampl))/(max(self.ampl)-min(self.ampl))
+        return 2*((self.ampl -
+            min(self.ampl))/(max(self.ampl)-min(self.ampl)))-1
 
 if __name__ == "__main__":
     test = AudioInformation(FILE_NAME)

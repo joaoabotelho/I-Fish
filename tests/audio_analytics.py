@@ -4,13 +4,14 @@ import numpy as np
 import peakutils
 from sklearn.preprocessing import normalize
 
-FILE_NAME = "audio-siri/audio_giro1.wav"
+FILE_NAME = "audio-siri/kanye_test.wav"
 
 class AudioInformation:
     def __init__(self, file_name):
         self.file = wave.open(file_name, "r")
         self.data = self.setData()
         self.framerate = self.setFramerate()
+        self.baseG = self.setBaseGraph()
         self.ampl = self.setAmpl()
         self.normalized = self.setNormalized()
 
@@ -32,20 +33,27 @@ class AudioInformation:
 
         print "Max value -> ", max(self.ampl)
         print "Min value -> ", min(self.ampl)
+        print "norm Len -> ", len(self.normalized)
 
         plt.figure(1)
         plt.title('Signal Wave...')
+        plt.subplot(2,1,1)
         plt.plot(self.normalized)
+        plt.subplot(2,1,2)
+        plt.plot(self.baseG)
         plt.show()
 
     def setData(self):
         return self.file.readframes(-1)
 
     def setAmpl(self):
-        ampl = np.fromstring(self.data, 'Int16').astype(float)
-        indexes = peakutils.indexes(ampl, thres=0.02/max(ampl), min_dist=1200)
-        final = np.take(ampl, indexes)
+        print "Len -> ", len(self.baseG)
+        indexes = peakutils.indexes(self.baseG, thres=0.02/max(self.baseG), min_dist=1200)
+        final = np.take(self.baseG, indexes)
         return final
+
+    def setBaseGraph(self):
+        return np.fromstring(self.data, 'Int16').astype(float)
 
     def setFramerate(self):
         return self.file.getframerate()

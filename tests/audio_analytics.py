@@ -4,11 +4,11 @@ import numpy as np
 import peakutils
 from sklearn.preprocessing import normalize
 
-FILE_NAME = "audio-siri/Siri_test1.wav"
+FILE_NAME = "audio-siri/audio_giro1.wav"
 
 class AudioInformation:
     def __init__(self, file_name):
-        self.file = wave.open(file_name, "rb")
+        self.file = wave.open(file_name, "r")
         self.data = self.setData()
         self.framerate = self.setFramerate()
         self.ampl = self.setAmpl()
@@ -43,7 +43,7 @@ class AudioInformation:
 
     def setAmpl(self):
         ampl = np.fromstring(self.data, 'Int16').astype(float)
-        indexes = peakutils.indexes(ampl, thres=0.02/max(ampl), min_dist=500)
+        indexes = peakutils.indexes(ampl, thres=0.02/max(ampl), min_dist=1200)
         final = np.take(ampl, indexes)
         return final
 

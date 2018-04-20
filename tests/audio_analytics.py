@@ -4,11 +4,13 @@ import numpy as np
 import peakutils
 from sklearn.preprocessing import normalize
 
-FILE_NAME = "audio-siri/audio_giro1.wav"
+#FILE_NAME = "audio-siri/Siri_test1.wav"
+
+
 
 class AudioInformation:
     def __init__(self, file_name):
-        self.file = wave.open(file_name, "r")
+        self.file = wave.open(file_name, "rb")
         self.data = self.setData()
         self.framerate = self.setFramerate()
         self.ampl = self.setAmpl()
@@ -30,12 +32,12 @@ class AudioInformation:
     def plot_audio(self):
         Time=np.linspace(0, len(self.ampl)/self.framerate, num=len(self.ampl))
 
-        print "Max value -> ", max(self.ampl)
-        print "Min value -> ", min(self.ampl)
+        print ("Max value -> ", max(self.ampl))
+        print ("Min value -> ", min(self.ampl))
 
         plt.figure(1)
         plt.title('Signal Wave...')
-        plt.plot(self.normalized)
+        plt.plot(self.ampl)
         plt.show()
 
     def setData(self):
@@ -43,7 +45,7 @@ class AudioInformation:
 
     def setAmpl(self):
         ampl = np.fromstring(self.data, 'Int16').astype(float)
-        indexes = peakutils.indexes(ampl, thres=0.02/max(ampl), min_dist=1200)
+        indexes = peakutils.indexes(ampl, thres=0.02/max(ampl), min_dist = 850)
         final = np.take(ampl, indexes)
         return final
 
@@ -53,7 +55,8 @@ class AudioInformation:
     def setNormalized(self):
         return (self.ampl - min(self.ampl))/(max(self.ampl)-min(self.ampl))
 
-if __name__ == "__main__":
+'''´if __name__ == "__main__":
     test = AudioInformation(FILE_NAME)
-    print test
+    print (test)
     test.plot_audio()
+'''

@@ -5,10 +5,11 @@ import peakutils
 from sklearn.preprocessing import normalize
 
 FILE_NAME = "audio-siri/kanye_test.wav"
+#FILE_NAME = "audio-siri/Siri_test1.wav"
 
 class AudioInformation:
     def __init__(self, file_name):
-        self.file = wave.open(file_name, "r")
+        self.file = wave.open(file_name, "rb")
         self.data = self.setData()
         self.framerate = self.setFramerate()
         self.baseG = self.setBaseGraph()
@@ -41,7 +42,6 @@ class AudioInformation:
         plt.plot(self.normalized)
         plt.subplot(2,1,2)
         plt.plot(self.baseG)
-        plt.show()
 
     def setData(self):
         return self.file.readframes(-1)
@@ -63,5 +63,5 @@ class AudioInformation:
 
 if __name__ == "__main__":
     test = AudioInformation(FILE_NAME)
-    print test
+    print (test)
     test.plot_audio()

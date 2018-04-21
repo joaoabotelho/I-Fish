@@ -5,26 +5,18 @@ import wave
 import time
 import pygame
 import threading
+import sys
+import google1
 from threading import Thread
-
 from audio_analytics import AudioInformation
+
+FILE_NAME = './response.wav'
+CLIENT_ACCESS_TOKEN = 'f0edfee5f0964102aac241ce5f13200b'
+speechRec = google1.speechRecognition(CLIENT_ACCESS_TOKEN)
 
 def main():
 
-    FILE_NAME = "audio-siri/Choppa_test.wav"
-    test = AudioInformation(FILE_NAME)
-
-    norm = test.normalized
-
-    """
-    intervals = []
-    n_intervals = 100
-
-    for i in range(len(norm)):
-        norm[i] = round(norm[i],5)
-        intervals.append(int((norm[i] * n_intervals) % (n_intervals+1)))
-    """
-
+    norm = []
     width = 800
     height = 600
     pygame.init()
@@ -44,12 +36,7 @@ def main():
     const = 200
     running = 1
 
-    durations = test.array_of_time
-
-    # Start music
-    t_start_animation = time.time() # in seconds ---------x.x
-    pygame.mixer.music.load(FILE_NAME)
-    pygame.mixer.music.play(0)
+    # durations = test.array_of_time
 
     i = 0
     while running:
@@ -73,22 +60,28 @@ def main():
             i+=1
             t_start_animation = time.time() # in seconds ---------x.x
 
-
-
-
         # END OF ARRAY
         if i >= len(norm):
+            norm = []
             pygame.mixer.music.stop()
             i = len(norm)-1
-            pygame.draw.line(DISPLAY, linecolor, (width/4,  const * norm[i] +
-                (height/2)), ((3*width)/4, const * norm[i] + (height/2)))
-            pygame.draw.line(DISPLAY, linecolor2, (width/4, -const * norm[i] +
-                (height/2)), ((3*width)/4, -const * norm[i] + (height/2)))
-
+            pygame.draw.line(DISPLAY, linecolor, (
+                width/4,
+                const * 0 +(height/2)),((3*width)/4, const * 0 + (height/2)))
+            pygame.draw.line(DISPLAY, linecolor2, (width/4, -const * 0 +
+                (height/2)), ((3*width)/4, -const * 0 + (height/2)))
+            audio = speechRec.record()
+            if speechRec.analyze(audio):
+                test = AudioInformation(FILE_NAME)
+                norm = test.normalized
+                durations = test.array_of_time
+                t_start_animation = time.time() # in seconds ---------x.x
+                pygame.mixer.music.load(FILE_NAME)
+                pygame.mixer.music.play(0)
+            i = 0
 
         if event.type == pygame.QUIT:
             running = False
-
 
         pygame.display.flip()
     pygame.quit()

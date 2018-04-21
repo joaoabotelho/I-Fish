@@ -11,7 +11,7 @@ from audio_analytics import AudioInformation
 
 def main():
 
-    FILE_NAME = "audio-siri/Choppa_test.wav"
+    FILE_NAME = "audio-siri/music1.wav"
     test = AudioInformation(FILE_NAME)
 
     norm = test.normalized
@@ -58,7 +58,7 @@ def main():
         DISPLAY.fill([0,0,0]) # CLEAN
 
         # NOT END OF ARRAY
-        if i != len(norm):
+        if i != norm.size:
             pygame.draw.line(DISPLAY, linecolor, (width/4,  const * norm[i] +
                 (height/2)), ((3*width)/4, const * norm[i] + (height/2)))
             pygame.draw.line(DISPLAY, linecolor2, (width/4, -const * norm[i] +
@@ -77,9 +77,9 @@ def main():
 
 
         # END OF ARRAY
-        if i >= len(norm):
+        if i >= norm.size:
             pygame.mixer.music.stop()
-            i = len(norm)-1
+            i = norm.size-1
             pygame.draw.line(DISPLAY, linecolor, (width/4,  const * norm[i] +
                 (height/2)), ((3*width)/4, const * norm[i] + (height/2)))
             pygame.draw.line(DISPLAY, linecolor2, (width/4, -const * norm[i] +

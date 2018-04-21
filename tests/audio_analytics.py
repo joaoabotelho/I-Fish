@@ -3,7 +3,10 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import peakutils
+import time
 from sklearn.preprocessing import normalize
+
+#from detect_peaks import detect_peaks
 
 #FILE_NAME = "audio-siri/kanye_test.wav"
 #FILE_NAME = "audio-siri/Choppa_test.wav"
@@ -57,31 +60,27 @@ class AudioInformation:
     def setAmpl(self):
         array = np.array([])
 
-        print ("Len -> ", self.baseG.size)
-
+        print ("BASEG Len -> ", self.baseG.size)
+        print (self.__str__())
         # gets indexes of all peaks in sound wave
-        indexes = np.array(peakutils.indexes(self.baseG, thres=0.02/max(self.baseG),
-                min_dist=1400))
-        print(indexes[0])
-        self.array_of_time = np.append(self.array_of_time, indexes[0])
-        #self.array_of_time = [(y - x) for (x, y) in zip(indexes[:-1], indexes[1:])]
-
-        # gets time between values
-        for i in range(1, indexes.size):
-            value = indexes[i] - indexes[i-1]
-            self.array_of_time = np.append(self.array_of_time, value)
-
+        begin = time.time()
+        indexes = np.array(peakutils.indexes(self.baseG, thres=0, min_dist=1400))
+        print("END INDEXES -> ", time.time()-begin)
+        print("INDEXES LEN -> ", indexes.size)
+        self.array_of_time = np.diff(indexes) * self.time_per_value
+        self.array_of_time = np.insert(self.array_of_time, 0,
+                self.time_per_value*indexes[0])
         print(self.array_of_time)
-        self.array_of_time = [x * self.time_per_value for x in
-            self.array_of_time]
-        print(self.array_of_time)
-        #print self.array_of_time
         #print sum(self.array_of_time)
         final = np.take(self.baseG, indexes)
         return final
 
     def setBaseGraph(self):
-        return np.array(np.fromstring(self.data, 'Int16').astype(float))
+        base = np.array(np.fromstring(self.data, 'Int16').astype(float))
+
+        #base = base[base >= 0]
+
+        return base
 
     def setFramerate(self):
         return self.file.getframerate()
@@ -92,5 +91,5 @@ class AudioInformation:
 
 if __name__ == "__main__":
     test = AudioInformation(sys.argv[1])
-    print(test)
+    print (test)
     test.plot_audio()

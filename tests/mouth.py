@@ -64,6 +64,7 @@ def main():
         if i >= len(norm):
             norm = []
             pygame.mixer.music.stop()
+
             i = len(norm)-1
             pygame.draw.line(DISPLAY, linecolor, (
                 width/4,

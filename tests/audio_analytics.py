@@ -39,10 +39,10 @@ class AudioInformation:
 
     def plot_audio(self):
         Time=np.linspace(0, len(self.ampl)/self.framerate, num=len(self.ampl))
-
-        print "Max value -> ", max(self.ampl)
-        print "Min value -> ", min(self.ampl)
-        print "norm Len -> ", len(self.normalized)
+        
+        print ("Max value -> ", max(self.ampl))
+        print ("Min value -> ", min(self.ampl))
+        print ("norm Len -> ", len(self.normalized))
 
         plt.figure(1)
         plt.title('Signal Wave...')
@@ -58,10 +58,10 @@ class AudioInformation:
     def setAmpl(self):
         array = []
 
-        print "Len -> ", len(self.baseG)
+        print ("Len -> ", len(self.baseG))
 
         # gets indexes of all peaks in sound wave
-        indexes = peakutils.indexes(self.baseG, thres=0.02/max(self.baseG), min_dist=1200)
+        indexes = peakutils.indexes(self.baseG, thres=0.02/max(self.baseG), min_dist=1000)
         self.array_of_time.append(indexes[0])
         #self.array_of_time = [(y - x) for (x, y) in zip(indexes[:-1], indexes[1:])]
 

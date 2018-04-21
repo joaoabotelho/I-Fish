@@ -45,7 +45,7 @@ def main():
         DISPLAY.fill([0,0,0]) # CLEAN
 
         # NOT END OF ARRAY
-        if i != norm.size:
+        if i != len(norm):
             pygame.draw.line(DISPLAY, linecolor, (width/4,  const * norm[i] +
                 (height/2)), ((3*width)/4, const * norm[i] + (height/2)))
             pygame.draw.line(DISPLAY, linecolor2, (width/4, -const * norm[i] +
@@ -61,14 +61,14 @@ def main():
             t_start_animation = time.time() # in seconds ---------x.x
 
         # END OF ARRAY
-        if i >= norm.size:
+        if i >= len(norm):
+            norm = []
             pygame.mixer.music.stop()
 
             i = len(norm)-1
             pygame.draw.line(DISPLAY, linecolor, (
                 width/4,
-                const * 0 +(height/2)),
-                             ((3*width)/4, const * 0 + (height/2)))
+                const * 0 +(height/2)),((3*width)/4, const * 0 + (height/2)))
             pygame.draw.line(DISPLAY, linecolor2, (width/4, -const * 0 +
                 (height/2)), ((3*width)/4, -const * 0 + (height/2)))
             audio = speechRec.record()

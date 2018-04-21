@@ -12,6 +12,7 @@ class googleApiRequest:
         request.session_id = self.session_id
         response = request.getresponse()
         parsed = json.loads(response.read().decode())
+        json.dumps(parsed, indent=4)
         return text_response
 
 if __name__ == '__main__':

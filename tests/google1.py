@@ -23,11 +23,13 @@ class speechRecognition:
 
     def __init__(self, client_access_token, sample_rate=48000, chunk_size=2048, device_id=0):
         self.mic_name = "USB Device 0x46d:0x825: Audio (hw:1, 0)"
+        self.client_access_token = client_access_token
         self.device_id = 0
         self.recognizer = sr.Recognizer()
+        self.recognizer.dynamic_energy_threshold = True
+        print('Pause threshold: ', self.recognizer.pause_threshold)
         self.sample_rate = sample_rate
         self.chunk_size = chunk_size
-        self.googleApi = googleApiRequest(client_access_token)
 
     def record(self):
         with sr.Microphone(device_index = self.device_id, sample_rate = self.sample_rate,
@@ -38,6 +40,7 @@ class speechRecognition:
         return audio
 
     def analyze(self, audio):
+        googleApi = googleApiRequest(self.client_access_token)
         try:
             text = self.recognizer.recognize_google(audio)
             if text == 'exit':
@@ -45,11 +48,11 @@ class speechRecognition:
                 quit()
             print("Recognized: " + text)
 
-            response = self.googleApi.expectResponse(text)
+            response = googleApi.expectResponse(text)
 
             print(response)
             os.system('rm -rf response.wav')
-            os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 44100 -ac 2 -ab 192k -f wav response.wav')
+            os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 11025 -ac 2 -ab 192k -f wav response.wav')
             # os.system('afplay response.wav')
             # os.system('python3 mouth.py response.wav')
             return True
@@ -75,7 +78,12 @@ class googleApiRequest:
         request.session_id = self.session_id
         response = request.getresponse()
         parsed = json.loads(response.read().decode())
+        print(json.dumps(parsed, indent=4))
         text_response = parsed['result']['fulfillment']['speech']
+        score = parsed['result']['score']
+        if score == 0.0:
+            text_response = 'I didn\'t understand'
+        print('Response: ', text_response)
         return text_response
 
 if __name__ == '__main__':

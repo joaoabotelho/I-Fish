@@ -52,7 +52,6 @@ def main():
     pygame.mixer.music.play(0)
 
     i = 0
-    cnst = 0.2 # ?? 
     while running:
         event = pygame.event.poll()
 

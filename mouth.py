@@ -47,14 +47,15 @@ def main():
 
             i = len(norm)-1
             D2A.ChangeDutyCycle(0)
-            # audio = speechRec.record()
-            # if speechRec.analyze(audio):
-            test = AudioInformation(FILE_NAME)
-            norm = test.normalized
-            durations = test.array_of_time
-            t_start_animation = time.time() # in seconds ---------x.x
-            pygame.mixer.music.load(FILE_NAME)
-            pygame.mixer.music.play(0)
+            audio = speechRec.record()
+            resp = speechRec.analyze(audio)
+            if resp[0]:
+                test = AudioInformation('./responses/' + resp[1] + '.wav')
+                norm = test.normalized
+                durations = test.array_of_time
+                t_start_animation = time.time() # in seconds ---------x.x
+                pygame.mixer.music.load(FILE_NAME)
+                pygame.mixer.music.play(0)
             i = 0
 
 if __name__ == "__main__":

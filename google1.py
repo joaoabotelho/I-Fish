@@ -51,19 +51,23 @@ class speechRecognition:
             response = googleApi.expectResponse(text)
 
             print(response)
-            os.system('rm -rf response.wav')
-            os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 11025 -ac 2 -ab 192k -f wav response.wav')
-            # os.system('afplay response.wav')
-            # os.system('python3 mouth.py response.wav')
-            return True
+            if not find(response+'.wav', './responses'):
+                os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav ' + response + '.wav')
+            return True, response
 
         except sr.UnknownValueError:
             print('Google Speech Recognition could not understand audio')
-            return False
+            return (False)
 
         except sr.RequestError as e:
             print('Could not request results from Google Speech Recognition service; {0}'.format(e))
-            return False
+            return (False)
+
+    def find(name, path):
+        for root, dirs, files in os.walk(path):
+            if name in files:
+                return os.path.join(root, name)
+        return (False)
 
 class googleApiRequest:
 

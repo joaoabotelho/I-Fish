@@ -32,7 +32,7 @@ class speechRecognition:
         self.chunk_size = chunk_size
 
     def record(self):
-        with sr.Microphone(device_index = self.device_id, sample_rate = self.sample_rate,
+        with sr.Microphone(sample_rate = self.sample_rate,
                                 chunk_size = self.chunk_size) as source:
             self.recognizer.adjust_for_ambient_noise(source)
             print("Recording...")
@@ -51,23 +51,24 @@ class speechRecognition:
             response = googleApi.expectResponse(text)
 
             print(response)
-            if not find(response+'.wav', './responses'):
-                os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav ' + response + '.wav')
-            return True, response
+            if not self.find(response+'.wav', './responses'):
+                os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav "' + response + '.wav"')
+                return True, response, False
+            return True, response, True
 
         except sr.UnknownValueError:
             print('Google Speech Recognition could not understand audio')
-            return (False)
+            return (False,)
 
         except sr.RequestError as e:
             print('Could not request results from Google Speech Recognition service; {0}'.format(e))
-            return (False)
+            return (False,)
 
-    def find(name, path):
+    def find(self, name, path):
         for root, dirs, files in os.walk(path):
             if name in files:
                 return os.path.join(root, name)
-        return (False)
+        return False
 
 class googleApiRequest:
 

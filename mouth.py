@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 import math
 import turtle
 import wave
@@ -50,11 +51,21 @@ def main():
             audio = speechRec.record()
             resp = speechRec.analyze(audio)
             if resp[0]:
-                test = AudioInformation('./responses/' + resp[1] + '.wav')
-                norm = test.normalized
+                if !resp[2]:
+                    test = AudioInformation('./responses/' + resp[1] + '.wav')
+                    norm = test.normalized
+                    with open('./responses/' + resp[1] + '-test.txt', 'wb') as handle:
+                        pickle.dump(test, handle, protocol=pickle.HIGHEST_PROTOCOL)
+                    with open('./responses/' + resp[1] + '-norm.txt', 'wb') as handle:
+                        pickle.dump(norm, handle, protocol=pickle.HIGHEST_PROTOCOL)
+                else:
+                    with open('./responses/' + resp[1] + '-test.txt', 'rb') as handle:
+                        test = np.array(pickle.load(handle))
+                    with open('./responses/' + resp[1] + '-norm.txt', 'rb') as handle:
+                        norm = np.array(pickle.load(handle))
                 durations = test.array_of_time
                 t_start_animation = time.time() # in seconds ---------x.x
-                pygame.mixer.music.load(FILE_NAME)
+                pygame.mixer.music.load('./responses/' + resp[1] + '.wav')
                 pygame.mixer.music.play(0)
             i = 0
 

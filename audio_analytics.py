@@ -1,8 +1,8 @@
 import wave
 import sys
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
-import peakutils
+#import peakutils
 import time
 #from detect_peaks import detect_peaks
 

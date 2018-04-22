@@ -52,7 +52,7 @@ class speechRecognition:
 
             print(response)
             if not self.find(response+'.wav', './responses'):
-                os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav "' + response + '.wav"')
+                os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav "./responses/' + response + '.wav"')
                 return True, response, False
             return True, response, True
 

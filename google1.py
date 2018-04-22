@@ -22,7 +22,7 @@ MAX_INT = 1000000000
 class speechRecognition:
 
     def __init__(self, client_access_token, sample_rate=48000, chunk_size=2048, device_id=0):
-        self.mic_name = "USB Device 0x46d:0x825: Audio (hw:1, 0)"
+        self.mic_name = 'bcm2835 ALSA: - (hw:0,0)'
         self.client_access_token = client_access_token
         self.device_id = 0
         self.recognizer = sr.Recognizer()

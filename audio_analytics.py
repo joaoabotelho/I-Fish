@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import peakutils
 import time
-from sklearn.preprocessing import normalize
-
 #from detect_peaks import detect_peaks
 
 #FILE_NAME = "audio-siri/kanye_test.wav"
@@ -64,7 +62,7 @@ class AudioInformation:
         print (self.__str__())
         # gets indexes of all peaks in sound wave
         begin = time.time()
-        indexes = np.array(peakutils.indexes(self.baseG, thres=0, min_dist=1400))
+        indexes = np.array(self.indexes(self.baseG, thres=0, min_dist=1400))
         print("END INDEXES -> ", time.time()-begin)
         print("INDEXES LEN -> ", indexes.size)
         self.array_of_time = np.diff(indexes) * self.time_per_value
@@ -88,6 +86,57 @@ class AudioInformation:
     def setNormalized(self):
         return np.array((self.ampl -
             min(self.ampl))/(max(self.ampl)-min(self.ampl)))
+
+    def indexes(self, y, thres=0.0, min_dist=1):
+        if isinstance(y, np.ndarray) and np.issubdtype(y.dtype, np.unsignedinteger):
+            raise ValueError("y must be signed")
+
+        thres = thres * (np.max(y) - np.min(y)) + np.min(y)
+        min_dist = int(min_dist)
+
+        # compute first order difference
+        dy = np.diff(y)
+
+        # propagate left and right values successively to fill all plateau pixels (0-value)
+        zeros,=np.where(dy == 0)
+
+        # check if the singal is totally flat
+        if len(zeros) == len(y) - 1:
+            return np.array([])
+
+        while len(zeros):
+            # add pixels 2 by 2 to propagate left and right value onto the zero-value pixel
+            zerosr = np.hstack([dy[1:], 0.])
+            zerosl = np.hstack([0., dy[:-1]])
+
+            # replace 0 with right value if non zero
+            dy[zeros]=zerosr[zeros]
+            zeros,=np.where(dy == 0)
+
+            # replace 0 with left value if non zero
+            dy[zeros]=zerosl[zeros]
+            zeros,=np.where(dy == 0)
+
+        # find the peaks by using the first order difference
+        peaks = np.where((np.hstack([dy, 0.]) < 0.)
+                         & (np.hstack([0., dy]) > 0.)
+                         & (y > thres))[0]
+
+        # handle multiple peaks, respecting the minimum distance
+        if peaks.size > 1 and min_dist > 1:
+            highest = peaks[np.argsort(y[peaks])][::-1]
+            rem = np.ones(y.size, dtype=bool)
+            rem[peaks] = False
+
+            for peak in highest:
+                if not rem[peak]:
+                    sl = slice(max(0, peak - min_dist), peak + min_dist + 1)
+                    rem[sl] = True
+                    rem[peak] = False
+
+            peaks = np.arange(y.size)[~rem]
+
+        return peaks
 
 if __name__ == "__main__":
     test = AudioInformation(sys.argv[1])

@@ -62,7 +62,7 @@ class AudioInformation:
         print (self.__str__())
         # gets indexes of all peaks in sound wave
         begin = time.time()
-        indexes = np.array(self.indexes(self.baseG, thres=0, min_dist=1400))
+        indexes = np.array(self.indexes(self.baseG, thres=0, min_dist=2000))
         print("END INDEXES -> ", time.time()-begin)
         print("INDEXES LEN -> ", indexes.size)
         self.array_of_time = np.diff(indexes) * self.time_per_value

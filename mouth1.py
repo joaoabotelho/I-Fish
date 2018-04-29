@@ -20,6 +20,7 @@ pygame.init()
 
 GPIO.setmode(GPIO.BCM) 
 GPIO.setup(25, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
 
 def write_to_file(path, array):
     f = open(path, 'w')
@@ -64,8 +65,11 @@ def main():
                 pygame.mixer.music.stop()
                 D2A.ChangeDutyCycle(100)
                 D2A.ChangeDutyCycle(0)
-
+                print('up')
+                GPIO.output(24, True)
                 audio = speechRec.record()
+                print('down')
+                GPIO.output(24, False)
                 resp = speechRec.analyze(audio)
                 print(resp)
                 if resp[0]:
@@ -89,7 +93,4 @@ def main():
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    audio = speechRec.record()
-    while(not resp[0] and resp[1].lower() != 'start'):
-        audio = speech.record()
     main()

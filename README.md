@@ -34,11 +34,11 @@ $ python mouth_sim.py
 
 ## Running BMBB
 
-If you want to create your own inteligent fish go to [our blogpost]() for more information, where we have our history since the start of our idea, everything behind the code explained, future implementations and the construction of our fellow fish from start to the end product.
+If you want to create your own inteligent fish go to [our blogpost]() for more information, where we have our history since the start of our idea, everything behind the code explained, future implementations and the construction of our fellow fish from start to the finished project.
 
 ## Authors
 
-* **João Botelho** - Project Manager/Software Developer - [PurpleBooth](https://github.com/joaoabotelho)
-* **Tiago Martins** - Software Developer - [PurpleBooth](https://github.com/tmartins1)
-* **Filipe Lopes** - Hardware Developer - [PurpleBooth](https://github.com/erbarbar)
-* **Diogo Isidoro** - Software Developer - [PurpleBooth](https://github.com/diogo8)
+* [João Botelho](https://github.com/joaoabotelho) - Project Manager/Software Developer
+* [Tiago Martins](https://github.com/tmartins1) - Software Developer
+* [Filipe Lopes](https://github.com/erbarbar) - Hardware Developer
+* [Diogo Isidoro](https://github.com/diogo8) - Software Developer

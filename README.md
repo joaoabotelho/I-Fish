@@ -1,89 +1,35 @@
 # I-Fish
 
-We transformed the common Big Mouth Billy Bass into an inteligent fish that responds accordingly to your questions.
-This is the code behind this project. 
+We transformed the common **Big Mouth Billy Bass (BMBB) into an inteligent fish** that responds accordingly to your questions.
+This is the code behind this project and a **simulator that mymics the mouth of the fish**.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-First you will need to get a Big Mouth Billy Bass and do this.......(hardware). After you connected .......
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+The main code it's for the fish it self, for that you will need a BMBB and to follow our [hardware instructions]().
+If you only want to see our **analysis** of audio working we have a **simulation** working get the code on [this directory](https://github.com/joaoabotelho/I-Fish/tree/master/simulator)
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+First install `SpeechRecognition`, `apiai`, `gTTS`, `numpy` and `pygame`
 ```
-Give the example
+$ pip3 install SpeechRecognition apiai gTTS numpy pygame
 ```
 
-And repeat
-
+If you want the simulaton working you will also need to install `matplotlib`, `peakutils` and `scikit-learn` 
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+$ pip3 install scikit-learn peakutils matplotlib 
 ```
 
-### And coding style tests
+## Running the simulator
 
-Explain what these tests test and why
-
+Go to [Simulator directory](https://github.com/joaoabotelho/I-Fish/tree/master/simulator) and run
 ```
-Give an example
+$ python mouth_sim.py
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **João Botelho** - Project Manager/Software Developer - [PurpleBooth](https://github.com/joaoabotelho)
+* **Tiago Martins** - Software Developer - [PurpleBooth](https://github.com/tmartins1)
+* **Filipe Lopes** - Hardware Developer - [PurpleBooth](https://github.com/erbarbar)
+* **Diogo Isidoro** - Software Developer - [PurpleBooth](https://github.com/diogo8)

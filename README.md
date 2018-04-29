@@ -22,7 +22,7 @@ $ pip3 install scikit-learn peakutils matplotlib
 
 ## Running the simulator
 
-Go to [Simulator directory](https://github.com/joaoabotelho/I-Fish/tree/master/simulator) and run
+Go to the [simulator directory](https://github.com/joaoabotelho/I-Fish/tree/master/simulator) and run
 ```
 $ python mouth_sim.py
 ```

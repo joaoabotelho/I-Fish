@@ -27,6 +27,10 @@ Go to the [simulator directory](https://github.com/joaoabotelho/I-Fish/tree/mast
 $ python mouth_sim.py
 ```
 
+## Running BMBB
+
+If you want to create your own inteligent fish go to our blogpost for more information, where we have our history since the start of our idea, everything behind the code explained, future implementations and the construction of our fellow fish from start to the end product.
+
 ## Authors
 
 * **João Botelho** - Project Manager/Software Developer - [PurpleBooth](https://github.com/joaoabotelho)

@@ -20,6 +20,11 @@ If you want the simulaton working you will also need to install `matplotlib`, `p
 $ pip3 install scikit-learn peakutils matplotlib 
 ```
 
+## Transformation from sound wave to mouth movement
+
+In our file `audio_analytics.py` you can give an input of audio to analysis returning the positions over time of the mouth.
+For more information go to [our blogpost]().
+
 ## Running the simulator
 
 Go to the [simulator directory](https://github.com/joaoabotelho/I-Fish/tree/master/simulator) and run
@@ -29,7 +34,7 @@ $ python mouth_sim.py
 
 ## Running BMBB
 
-If you want to create your own inteligent fish go to our blogpost for more information, where we have our history since the start of our idea, everything behind the code explained, future implementations and the construction of our fellow fish from start to the end product.
+If you want to create your own inteligent fish go to [our blogpost]() for more information, where we have our history since the start of our idea, everything behind the code explained, future implementations and the construction of our fellow fish from start to the end product.
 
 ## Authors
 

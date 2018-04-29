@@ -22,7 +22,7 @@ $ pip3 install scikit-learn peakutils matplotlib
 
 ## Transformation from sound wave to mouth movement
 
-In our file `audio_analytics.py` you can give an input of audio to analysis returning the positions over time of the mouth.
+In our file `audio_analytics.py` you can give an input of audio to analysis, returning the positions over time of the mouth seen in the simulation and the BMBB.
 For more information go to [our blogpost]().
 
 ## Running the simulator

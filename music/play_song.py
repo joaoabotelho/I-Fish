@@ -25,7 +25,7 @@ GPIO.setup(24, GPIO.OUT)
 norm = read_from_file(NORM_MUSIC_FILE)
 durations = read_from_file(DURAT_MUSIC_FILE)
 
-D2A = GPIO.PWM(24,100)
+D2A = GPIO.PWM(25,100)
 D2A.start(0)
 
 pygame.mixer.music.load(MUSIC_PLAY)

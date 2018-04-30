@@ -6,7 +6,7 @@ import sys
 from random import randint
 from gtts import gTTS
 import os
-from google_api_request import speechRecognition
+from google_api_request import googleApiRequest
 from tempfile import TemporaryFile
 
 CLIENT_ACCESS_TOKEN = 'f0edfee5f0964102aac241ce5f13200b'
@@ -33,7 +33,7 @@ class speechRecognition:
         return audio
 
     def analyze(self, audio):
-        googleApi = speechRecognition(self.client_access_token)
+        googleApi = googleApiRequest(self.client_access_token)
         try:
             text = self.recognizer.recognize_google(audio)
             if text == 'exit':

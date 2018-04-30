@@ -11,8 +11,7 @@ except ImportError:
     )
     import apiai
 
-MAX_INT = 1000000000
-
+MAX_googleApiRequest
 class googleApiRequest:
 
     def __init__(self, client_access_token):

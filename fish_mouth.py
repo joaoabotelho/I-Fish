@@ -1,24 +1,17 @@
-import numpy as np 
-import pickle 
-import math 
-import turtle 
-import wave 
-import time 
-import pygame 
-import threading 
-import sys 
-import google1 
-from threading import Thread 
-from audio_analytics import AudioInformation 
+import numpy as np
+import time
+import pygame
+import google_speech_api
+from audio_analytics import AudioInformation
 import RPi.GPIO as GPIO
 
-FILE_NAME = './tests/response.wav' 
-CLIENT_ACCESS_TOKEN = 'f0edfee5f0964102aac241ce5f13200b' 
-speechRec = google1.speechRecognition(CLIENT_ACCESS_TOKEN)
+FILE_NAME = './tests/response.wav'
+CLIENT_ACCESS_TOKEN = 'f0edfee5f0964102aac241ce5f13200b'
+speechRec = google_speech_api.speechRecognition(CLIENT_ACCESS_TOKEN)
 
 pygame.init()
 
-GPIO.setmode(GPIO.BCM) 
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
 

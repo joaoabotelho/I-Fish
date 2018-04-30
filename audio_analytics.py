@@ -84,8 +84,9 @@ class AudioInformation:
         return self.file.getframerate()
 
     def setNormalized(self):
-        return np.array((self.ampl -
+        norm = np.array((self.ampl -
             min(self.ampl))/(max(self.ampl)-min(self.ampl)))
+        return np.array([round(i, 1) for i in norm])
 
     def indexes(self, y, thres=0.0, min_dist=1):
         if isinstance(y, np.ndarray) and np.issubdtype(y.dtype, np.unsignedinteger):

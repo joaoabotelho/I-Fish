@@ -60,17 +60,17 @@ class AudioInformation:
     def setAmpl(self):
         array = np.array([])
 
-        print ("BASEG Len -> ", self.baseG.size)
-        print self.__str__()
+        # print ("BASEG Len -> ", self.baseG.size)
+        # print self.__str__()
         # gets indexes of all peaks in sound wave
         begin = time.time()
         indexes = np.array(peakutils.indexes(self.baseG, thres=0, min_dist=1400))
-        print "END INDEXES -> ", time.time()-begin
-        print "INDEXES LEN -> ", indexes.size
+        # print "END INDEXES -> ", time.time()-begin
+        # print "INDEXES LEN -> ", indexes.size
         self.array_of_time = np.diff(indexes) * self.time_per_value
         self.array_of_time = np.insert(self.array_of_time, 0,
                 self.time_per_value*indexes[0])
-        print self.array_of_time
+        # print self.array_of_time
         #print sum(self.array_of_time)
         final = np.take(self.baseG, indexes)
         return final

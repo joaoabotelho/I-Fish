@@ -10,15 +10,10 @@ def read_from_file(path, norm=False):
     for line in f:
         numb = float(line)
         if norm == True:
-            """
-            if(numb <= 0.2):
+            if(numb <= 0.3):
                 numb = 0
-            elif(numb > 0.2 and numb <= 0.4):
-                numb = 0.3
             else:
                 numb = round(numb,1)
-            """
-            numb = round(numb,1)
         else:
             if flag == 1:
                 flag = 0

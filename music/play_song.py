@@ -6,15 +6,23 @@ import numpy as np
 def read_from_file(path, norm=False):
     f = open(path, 'r')
     a = np.array([])
+    flag = 1
     for line in f:
         numb = float(line)
         if norm == True:
+            """
             if(numb <= 0.2):
                 numb = 0
             elif(numb > 0.2 and numb <= 0.4):
                 numb = 0.3
             else:
                 numb = round(numb,1)
+            """
+            numb = round(numb,1)
+        else:
+            if flag == 1:
+                flag = 0
+                numb += 0.4
         a = np.append(a, numb)
     f.close()
     return a

@@ -24,7 +24,7 @@ def read_from_file(path, norm=False):
 
 NORM_MUSIC_FILE = "./nevergonnagiveyouup-normalized.txt"
 DURAT_MUSIC_FILE = "./nevergonnagiveyouup-array_of_time.txt"
-MUSIC_PLAY = "./nevergonnagiveyouup.wav"
+MUSIC_PLAY = "./music-nevergonnagiveyouup.mp3"
 
 pygame.init()
 

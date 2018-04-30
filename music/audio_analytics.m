@@ -1,5 +1,5 @@
 % filename = 'voice1_music.wav';
-file = './voice-beatit';
+file = './nevergonnagiveyouup';
 filename = strcat(file,'.wav');
 [data,Fs] = audioread(filename);
 inf = audioinfo(filename);

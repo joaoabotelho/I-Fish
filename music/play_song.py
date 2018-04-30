@@ -13,20 +13,16 @@ def read_from_file(path, norm=False):
                 numb = 0
             elif(numb > 0.2 and numb <= 0.4):
                 numb = 0.3
-            elif(numb > 0.4 and numb <= 0.6):
-                numb = 0.5
-            elif(numb > 0.6 and numb <= 0.8):
-                numb = 0.7
-            elif(numb > 0.8 and numb < 1):
-                numb = 0.9
+            else:
+                numb = round(numb,1)
         a = np.append(a, numb)
     f.close()
     return a
 
 
-NORM_MUSIC_FILE = "./voice-beatit-normalized.txt"
-DURAT_MUSIC_FILE = "./voice-beatit-array_of_time.txt"
-MUSIC_PLAY = "./music-beatit.mp3"
+NORM_MUSIC_FILE = "./nevergonnagiveyouup-normalized.txt"
+DURAT_MUSIC_FILE = "./nevergonnagiveyouup-array_of_time.txt"
+MUSIC_PLAY = "./nevergonnagiveyouup.wav"
 
 pygame.init()
 

@@ -13,7 +13,7 @@ def read_from_file(path):
 
 NORM_MUSIC_FILE = "./voice-beatit-normalized.txt"
 DURAT_MUSIC_FILE = "./voice-beatit-array_of_time.txt"
-MUSIC_PLAY = "./music-beatit.wav"
+MUSIC_PLAY = "./music-beatit.mp3"
 
 pygame.init()
 

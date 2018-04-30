@@ -3,6 +3,7 @@ import subprocess
 import os.path
 import json
 import sys
+import google_api_request
 from random import randint
 from gtts import gTTS
 import os
@@ -32,7 +33,7 @@ class speechRecognition:
         return audio
 
     def analyze(self, audio):
-        googleApi = googleApiRequest(self.client_access_token)
+        googleApi = google_api_request.googleApiRequest(self.client_access_token)
         try:
             text = self.recognizer.recognize_google(audio)
             if text == 'exit':

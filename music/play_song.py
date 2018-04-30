@@ -45,7 +45,8 @@ t_start_animation = time.time()
 pygame.mixer.music.play(0)
 
 for x,y in zip(norm, durations):
-    D2A.ChangeDutyCycle(round(x,1)*100)
+    D2A.ChangeDutyCycle(x*100)
+    print (x)
     t_end_animation = time.time()
     animation_time = t_end_animation - t_start_animation
 

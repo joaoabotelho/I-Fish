@@ -7,7 +7,18 @@ def read_from_file(path):
     f = open(path, 'r')
     a = np.array([])
     for line in f:
-        a = np.append(a, float(line))
+        numb = float(line)
+        if(numb <= 0.2):
+            numb = 0
+        elif(numb > 0.2 and numb <= 0.4):
+            numb = 0.3
+        elif(numb > 0.4 and numb <= 0.6):
+            numb = 0.5
+        elif(numb > 0.6 and numb <= 0.8):
+            numb = 0.7
+        elif(numb > 0.8 and numb < 1):
+            numb = 0.9
+        a = np.append(a, numb)
     f.close()
     return a
 

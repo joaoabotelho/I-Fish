@@ -24,7 +24,7 @@ def gen():
         inp = input("Input: ")
         response = googleApi.expectResponse(inp)
         if not find_folder(response + '.wav', './responses'):
-            os.system(' gtts-cli.py "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav "./responses/' + response + '.wav"')
+            os.system(' gtts-cli "' + response + '" -l \'en\' | ffmpeg -i - -ar 22050 -ac 2 -ab 192k -f wav "./responses/' + response + '.wav"')
             test = AudioInformation('./responses/' + response + '.wav')
             norm = test.normalized
             write_to_file('./responses/' + response + '-test.txt', test.array_of_time)

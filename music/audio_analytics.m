@@ -1,5 +1,5 @@
 % filename = 'voice1_music.wav';
-file = './audio-siri/nevergonnagiveyouup';
+file = './voice-beatit';
 filename = strcat(file,'.wav');
 [data,Fs] = audioread(filename);
 inf = audioinfo(filename);
@@ -16,7 +16,7 @@ data = data(:,1);
 
 length_data = length(data);
 x = (0:length_data-1)';
-time_per_value = a / length_data;
+time_per_value = inf.Duration / length_data;
 
 [pks, indexes] = findpeaks(data,x,'MinPeakDistance',1400);
 t_values = data(indexes);

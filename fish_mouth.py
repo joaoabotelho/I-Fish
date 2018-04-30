@@ -1,9 +1,9 @@
-import numpy as np
-import time
-import pygame
-import google_speech_api
 from audio_analytics import AudioInformation
 import RPi.GPIO as GPIO
+import google_speech_api
+import numpy as np
+import pygame
+import time
 
 FILE_NAME = './tests/response.wav'
 CLIENT_ACCESS_TOKEN = 'f0edfee5f0964102aac241ce5f13200b'

@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import pygame
 import time
+import numpy as np
 
 def read_from_file(path):
     f = open(path, 'r')

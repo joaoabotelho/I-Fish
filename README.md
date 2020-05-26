@@ -2,6 +2,10 @@
 
 We transformed the common **Big Mouth Billy Bass (BMBB) into an inteligent fish** that responds accordingly to your questions.
 This is the code behind this project and a **simulator that mymics the mouth of the fish**.
+
+
+*Only Video that we captured*
+
 ![](iFish-Only-Demo.gif)
 
 ## Getting Started

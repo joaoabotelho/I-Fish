@@ -67,7 +67,7 @@ class AudioInformation:
         print("INDEXES LEN -> ", indexes.size)
         self.array_of_time = np.diff(indexes) * self.time_per_value
         self.array_of_time = np.insert(self.array_of_time, 0,
-                self.time_per_value*indexes[0] + 0.04)
+                self.time_per_value*indexes[0] + 0.06)
         print(self.array_of_time)
         #print sum(self.array_of_time)
         final = np.take(self.baseG, indexes)

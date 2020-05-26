@@ -42,7 +42,7 @@ def main():
         while running:
             # NOT END OF ARRAY
             if i != len(norm):
-                D2A.ChangeDutyCycle(norm[i] * 100)
+5               D2A.ChangeDutyCycle(norm[i] * 100)
                 t_end_animation = time.time()
                 animation_time = t_end_animation - t_start_animation
 

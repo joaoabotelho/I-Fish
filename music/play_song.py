@@ -16,7 +16,7 @@ def read_from_file(path, norm=False):
                 numb = round(numb,1)
         elif norm == False and flag == 1:
             flag = 0
-            numb += 0.2
+            numb -= 0.2
         a = np.append(a, numb)
     f.close()
     return a
